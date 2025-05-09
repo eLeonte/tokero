@@ -1,24 +1,24 @@
 import { test, expect } from "@playwright/test";
+import { visitTokeroEng, validatePageTitle } from "../../support/helpers";
 
 test("Validate title", async ({ page }) => {
-  page.goto("https://tokero.dev/en/");
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(
-    /Cryptocurrencies Exchange Platform | Crypto Trends & Market Insights | TOKERO/
+  await visitTokeroEng(page);
+  await validatePageTitle(
+    page,
+    "Cryptocurrencies Exchange Platform | Crypto Trends & Market Insights | TOKERO"
   );
 });
 
 test("Create account", async ({ page }) => {
-  page.goto("https://tokero.dev/en/");
+  visitTokeroEng(page);
 
-  // Click the get started link.
+  // Click the Create Account link.
   await page
     .locator("header")
     .getByRole("link", { name: "Create Account" })
     .click();
 
-  // Expects page to have a heading with the name of Installation.
+  // Expects page to have a heading with the name of Create a new account.
   await expect(
     page.getByRole("heading", { name: "Create a new account" })
   ).toBeVisible();

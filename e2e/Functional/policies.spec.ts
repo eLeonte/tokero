@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { visitTokeroEng, visitTokeroRo } from "../../support/helpers";
 
-test.only("Policies list - validate each list can be accessed - English", async ({
+test("Policies list - validate each list can be accessed - English", async ({
   page,
 }) => {
   const termsAndConditions = page.getByRole("link", {
     name: "Terms and Conditions",
   });
   const privacy = page.getByRole("link", { name: "Privacy" });
-  const fees = page.getByRole("link", { name: "Fees" });
+  const fees = page.locator("header").getByRole("link", { name: "Fees" });
   const cookies = page.getByRole("link", { name: "Cookies" });
   const kYC = page.getByRole("link", { name: "KYC" });
   const refferrals = page.getByRole("link", { name: "Referrals" });
@@ -32,9 +32,36 @@ test.only("Policies list - validate each list can be accessed - English", async 
     .isVisible();
 
   expect(termsAndConditions).toBeVisible();
-  expect(termsAndConditions).toHaveText("Terms and Conditions");
+  expect(termsAndConditions).toHaveText("Terms and conditions");
   expect(termsAndConditions).toBeEnabled();
   termsAndConditions.click();
+  await expect(page.getByTitle("Terms of service")).toBeVisible();
+
+  await page.goBack();
+
+  await expect(privacy).toBeVisible();
+  await expect(privacy).toHaveText("Privacy");
+  expect(privacy).toBeEnabled();
+  privacy.click();
+  await expect(page.getByTitle("Privacy Policy")).toBeVisible();
+
+  await page.goBack();
+
+  await expect(fees).toBeVisible();
+  await expect(fees).toHaveText("Fees");
+  expect(fees).toBeEnabled();
+  fees.click();
+  await expect(page.getByTitle("Fees and timings")).toBeVisible();
+
+  await page.goBack();
+
+  await expect(cookies).toBeVisible();
+  await expect(cookies).toHaveText("Cookies");
+  expect(cookies).toBeEnabled();
+  cookies.click();
+  await expect(page.getByTitle("Cookies Policy"));
+
+  await page.goBack();
 });
 
 test("Policies list - validate each list can be accessed - Romanian", async ({
