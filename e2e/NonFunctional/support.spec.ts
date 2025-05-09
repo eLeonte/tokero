@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { visitTokeroEng, validatePageTitle } from "../../support/helpers";
+import { visitTokeroEng } from "../../support/helpers";
 
 test("Contact us page details", async ({ page }) => {
   const sendMessageButton = page.getByRole("button", { name: "Send message" });
@@ -30,9 +30,11 @@ test("Contact us page details", async ({ page }) => {
   await expect(page.getByText("Withdrawal (crypto)")).toBeVisible();
   await expect(page.getByText("Withdrawal (fiat)")).toBeVisible();
   await expect(page.getByText("Failed trade")).toBeVisible();
-  // await expect(page.getByText("Fees")).toBeVisible();
+  await expect(page.getByText("Fees", { exact: true })).toBeVisible();
   await expect(page.getByText("New listings and waiting lists")).toBeVisible();
-  await expect(page.getByText("TOKERO Academy")).toBeVisible();
+  await expect(
+    page.getByText("TOKERO Academy", { exact: true }).nth(0)
+  ).toBeVisible();
   await expect(page.getByText("Limited account")).toBeVisible();
   await expect(page.getByText("Tap2Earn / Crypto Mayors Kombat")).toBeVisible();
 
