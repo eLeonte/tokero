@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Validate title", async ({ page }) => {
-  await page.goto("https://tokero.dev/en/");
+  page.goto("https://tokero.dev/en/");
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(
@@ -10,8 +10,7 @@ test("Validate title", async ({ page }) => {
 });
 
 test("Create account", async ({ page }) => {
-  await page.goto("https://tokero.dev/en/");
-  await page.getByRole("button", { name: "Accept all cookies" }).click();
+  page.goto("https://tokero.dev/en/");
 
   // Click the get started link.
   await page

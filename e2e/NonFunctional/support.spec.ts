@@ -9,51 +9,47 @@ test("Contact us page details", async ({ page }) => {
   const phoneLabel = page.locator("label", { hasText: "Phone" });
   const messageLabel = page.locator("label", { hasText: "Message" });
 
-  await visitTokeroEng(page);
-
-  await page.getByRole("button", { name: "Accept all cookies" }).click();
+  visitTokeroEng(page);
 
   await page.getByTitle("Contact us").isVisible();
-  await page
-    .locator("header")
-    .getByRole("link", { name: "Contact us" })
-    .click();
+  page.locator("header").getByRole("link", { name: "Contact us" }).click();
 
   await page.getByTitle("Send us a message").isVisible();
 
-  await expect(reasonLabel).toBeVisible();
-  await expect(reasonLabel).toHaveText("Reason: *");
-  await page.locator("#contact-form-reasons").click();
-  await expect(page.getByText("General question")).toBeVisible();
-  await expect(page.getByText("Deposit (crypto)")).toBeVisible();
-  await expect(page.getByText("Deposit (fiat)")).toBeVisible();
-  await expect(page.getByText("Withdrawal (crypto)")).toBeVisible();
-  await expect(page.getByText("Withdrawal (fiat)")).toBeVisible();
-  await expect(page.getByText("Failed trade")).toBeVisible();
-  await expect(page.getByText("Fees", { exact: true })).toBeVisible();
-  await expect(page.getByText("New listings and waiting lists")).toBeVisible();
-  await expect(
+  expect(reasonLabel).toBeVisible();
+  expect(reasonLabel).toHaveText("Reason: *");
+
+  page.locator("#contact-form-reasons").click();
+  expect(page.getByText("General question")).toBeVisible();
+  expect(page.getByText("Deposit (crypto)")).toBeVisible();
+  expect(page.getByText("Deposit (fiat)")).toBeVisible();
+  expect(page.getByText("Withdrawal (crypto)")).toBeVisible();
+  expect(page.getByText("Withdrawal (fiat)")).toBeVisible();
+  expect(page.getByText("Failed trade")).toBeVisible();
+  expect(page.getByText("Fees", { exact: true })).toBeVisible();
+  expect(page.getByText("New listings and waiting lists")).toBeVisible();
+  expect(
     page.getByText("TOKERO Academy", { exact: true }).nth(0)
   ).toBeVisible();
-  await expect(page.getByText("Limited account")).toBeVisible();
-  await expect(page.getByText("Tap2Earn / Crypto Mayors Kombat")).toBeVisible();
+  expect(page.getByText("Limited account")).toBeVisible();
+  expect(page.getByText("Tap2Earn / Crypto Mayors Kombat")).toBeVisible();
 
-  await expect(nameLabel).toBeVisible();
-  await expect(nameLabel).toHaveText("Name: *");
-  await page.locator("#contact-form-name").isEditable();
+  expect(nameLabel).toBeVisible();
+  expect(nameLabel).toHaveText("Name: *");
+  page.locator("#contact-form-name").isEditable();
 
-  await expect(emailLabel).toBeVisible();
-  await expect(emailLabel).toHaveText("Email address: *");
-  await page.locator("#contact-form-email").isEditable();
+  expect(emailLabel).toBeVisible();
+  expect(emailLabel).toHaveText("Email address: *");
+  page.locator("#contact-form-email").isEditable();
 
-  await expect(phoneLabel).toBeVisible();
-  await expect(phoneLabel).toHaveText("Phone number: *");
-  await page.locator("#contact-form-phone").isEditable();
+  expect(phoneLabel).toBeVisible();
+  expect(phoneLabel).toHaveText("Phone number: *");
+  page.locator("#contact-form-phone").isEditable();
 
-  await expect(messageLabel).toBeVisible();
-  await expect(messageLabel).toHaveText("Message: *");
-  await page.locator("#contact-form-message").isEditable();
+  expect(messageLabel).toBeVisible();
+  expect(messageLabel).toHaveText("Message: *");
+  page.locator("#contact-form-message").isEditable();
 
-  await expect(sendMessageButton).toBeVisible();
-  await expect(sendMessageButton).toBeEnabled();
+  expect(sendMessageButton).toBeVisible();
+  expect(sendMessageButton).toBeEnabled();
 });

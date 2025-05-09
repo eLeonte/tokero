@@ -15,18 +15,15 @@ test.only("Policies list - validate each list can be accessed - English", async 
   const requestAnsweringProcessingTimes = page.getByRole("link", {
     name: "Request answering/processing times",
   });
-
   const minimumsAndOptions = page.getByRole("link", {
     name: "Minimums And options",
   });
-
   const gDPR = page.getByRole("link", { name: "GDPR" });
   const countriesListForAMLRiskAssessment = page.getByRole("link", {
     name: "Countries list for AML risk assessment",
   });
 
   visitTokeroEng(page);
-  await page.getByRole("button", { name: "Accept all cookies" }).click();
 
   await page.getByRole("link", { name: "Policies list" }).click();
   await page

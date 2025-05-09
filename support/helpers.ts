@@ -10,4 +10,5 @@ export async function visitTokeroRo(page) {
 
 export async function validatePageTitle(page, title) {
   await expect(page).toHaveTitle(title);
+  await page.getByRole("button", { name: "Accept all cookies" }).click();
 }

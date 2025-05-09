@@ -8,7 +8,6 @@ test("Choose parity", async ({ page }) => {
   const USDC = page.locator(".nav-item.baseCoins_tabItems__NHObL").nth(3);
 
   visitTokeroEng(page);
-  await page.getByRole("button", { name: "Accept all cookies" }).click();
 
   await page.locator("header").getByRole("link", { name: "Exchange" }).click();
   await page.locator("header").getByTitle("Exchange").isVisible();
@@ -35,20 +34,20 @@ test("Choose parity", async ({ page }) => {
   expect(USD.locator(".nav-link")).not.toContainClass("active");
   expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
-  await RON.click();
-  expect(EUR.locator(".nav-link")).not.toContainClass("active");
+  RON.click();
+  await expect(EUR.locator(".nav-link")).not.toContainClass("active");
   expect(RON.locator(".nav-link")).toContainClass("active");
   expect(USD.locator(".nav-link")).not.toContainClass("active");
   expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
-  await USD.click();
-  expect(EUR.locator(".nav-link")).not.toContainClass("active");
+  USD.click();
+  await expect(EUR.locator(".nav-link")).not.toContainClass("active");
   expect(RON.locator(".nav-link")).not.toContainClass("active");
   expect(USD.locator(".nav-link")).toContainClass("active");
   expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
-  await USDC.click();
-  expect(EUR.locator(".nav-link")).not.toContainClass("active");
+  USDC.click();
+  await expect(EUR.locator(".nav-link")).not.toContainClass("active");
   expect(RON.locator(".nav-link")).not.toContainClass("active");
   expect(USD.locator(".nav-link")).not.toContainClass("active");
   expect(USDC.locator(".nav-link")).toContainClass("active");
