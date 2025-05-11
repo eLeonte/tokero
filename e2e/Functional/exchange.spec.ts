@@ -12,43 +12,43 @@ test("Choose parity", async ({ page }) => {
   await page.locator("header").getByRole("link", { name: "Exchange" }).click();
   await page.locator("header").getByTitle("Exchange").isVisible();
 
-  expect(EUR).toBeVisible();
-  expect(EUR).toHaveText("EUR");
-  expect(EUR).toBeEnabled();
+  await expect(EUR).toBeVisible();
+  await expect(EUR).toHaveText("EUR");
+  await expect(EUR).toBeEnabled();
 
-  expect(RON).toBeVisible();
-  expect(RON).toHaveText("RON");
-  expect(RON).toBeEnabled();
+  await expect(RON).toBeVisible();
+  await expect(RON).toHaveText("RON");
+  await expect(RON).toBeEnabled();
 
-  expect(USD).toBeVisible();
-  expect(USD).toHaveText("USD");
-  expect(USD).toBeEnabled();
+  await expect(USD).toBeVisible();
+  await expect(USD).toHaveText("USD");
+  await expect(USD).toBeEnabled();
 
-  expect(USDC).toBeVisible();
-  expect(USDC).toHaveText("USDC");
-  expect(USDC).toBeEnabled();
+  await expect(USDC).toBeVisible();
+  await expect(USDC).toHaveText("USDC");
+  await expect(USDC).toBeEnabled();
 
   //Assertion of the child class that gets updated when the currency is selected
-  expect(EUR.locator(".nav-link")).toContainClass("active");
-  expect(RON.locator(".nav-link")).not.toContainClass("active");
-  expect(USD.locator(".nav-link")).not.toContainClass("active");
-  expect(USDC.locator(".nav-link")).not.toContainClass("active");
+  await expect(EUR.locator(".nav-link")).toContainClass("active");
+  await expect(RON.locator(".nav-link")).not.toContainClass("active");
+  await expect(USD.locator(".nav-link")).not.toContainClass("active");
+  await expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
   await RON.click();
   await expect(EUR.locator(".nav-link")).not.toContainClass("active");
-  expect(RON.locator(".nav-link")).toContainClass("active");
-  expect(USD.locator(".nav-link")).not.toContainClass("active");
-  expect(USDC.locator(".nav-link")).not.toContainClass("active");
+  await expect(RON.locator(".nav-link")).toContainClass("active");
+  await expect(USD.locator(".nav-link")).not.toContainClass("active");
+  await expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
   await USD.click();
   await expect(EUR.locator(".nav-link")).not.toContainClass("active");
-  expect(RON.locator(".nav-link")).not.toContainClass("active");
-  expect(USD.locator(".nav-link")).toContainClass("active");
-  expect(USDC.locator(".nav-link")).not.toContainClass("active");
+  await expect(RON.locator(".nav-link")).not.toContainClass("active");
+  await expect(USD.locator(".nav-link")).toContainClass("active");
+  await expect(USDC.locator(".nav-link")).not.toContainClass("active");
 
   await USDC.click();
   await expect(EUR.locator(".nav-link")).not.toContainClass("active");
-  expect(RON.locator(".nav-link")).not.toContainClass("active");
-  expect(USD.locator(".nav-link")).not.toContainClass("active");
-  expect(USDC.locator(".nav-link")).toContainClass("active");
+  await expect(RON.locator(".nav-link")).not.toContainClass("active");
+  await expect(USD.locator(".nav-link")).not.toContainClass("active");
+  await expect(USDC.locator(".nav-link")).toContainClass("active");
 });

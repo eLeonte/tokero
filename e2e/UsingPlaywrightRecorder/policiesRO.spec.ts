@@ -1,7 +1,11 @@
 import { test, expect } from "@playwright/test";
 
-test("test", async ({ page }) => {
+test("Policies list - validate each list can be accessed - Romanian", async ({
+  page,
+}) => {
   await page.goto("https://tokero.dev/ro/");
+
+  await page.getByRole("button", { name: "Accept all cookies" }).click();
 
   await page.getByRole("link", { name: "Listă politici" }).click();
   await expect(
@@ -92,9 +96,7 @@ test("test", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Afiliere" })).toBeVisible();
   await expect(page.locator("blazor-policies_v5")).toContainText("Afiliere");
   await page.getByRole("link", { name: "Afiliere" }).click();
-  await expect(
-    page.getByRole("heading", { name: "TOKERO Affiliate Heroes" })
-  ).toBeVisible();
+
   await expect(page.locator("h1")).toContainText(
     "TOKERO Affiliate Heroes Program"
   );
@@ -152,6 +154,7 @@ test("test", async ({ page }) => {
   await expect(page.getByRole("heading")).toContainText("Minime și opțiuni");
 
   await page.goto("https://tokero.dev/ro/policies/");
+
   await expect(
     page.locator("blazor-policies_v5").getByRole("link", { name: "GDPR" })
   ).toBeVisible();

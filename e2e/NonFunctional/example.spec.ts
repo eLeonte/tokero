@@ -9,7 +9,7 @@ test("Validate title", async ({ page }) => {
   );
 });
 
-test("Create account", async ({ page }) => {
+test("Validate Create account details", async ({ page }) => {
   visitTokeroEng(page);
 
   // Click the Create Account link.
