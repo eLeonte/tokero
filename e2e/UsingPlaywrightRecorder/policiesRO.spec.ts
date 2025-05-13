@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+//This test is not refined, it was an expirement using the playwright recorder feature as I wanted to try it out
+
 test("Policies list - validate each list can be accessed - Romanian", async ({
   page,
 }) => {
